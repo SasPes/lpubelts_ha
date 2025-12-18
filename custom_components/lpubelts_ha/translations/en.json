@@ -1,0 +1,14 @@
+{
+  "title": "LPU Belts HA",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up LPU Belts",
+        "description": "Enter your LPU Belts name",
+        "data": {
+          "display_name": "Name"
+        }
+      }
+    }
+  }
+}
