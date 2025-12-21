@@ -15,6 +15,22 @@ Custom integration for Home Assistant to show LPU Belts leaderboard data
 - Install the `LPU Belts HA` integration
 - Restart Home Assistant
 
+## Manual Installation
+
+1. **Download the integration:**
+   - Clone or download this repository
+   - Extract the `lpubelts_ha` folder from `custom_components`
+
+2. **Place files in Home Assistant:**
+   ```bash
+   cp -r custom_components/lpubelts_ha ~/.homeassistant/custom_components/
+   ```
+   Or manually copy the `lpubelts_ha` folder to `<config>/custom_components/` where `<config>` is your Home Assistant configuration directory
+
+3. **Restart Home Assistant:**
+   - Go to Settings → System → Restart Home Assistant
+   - Or restart via command line: `sudo systemctl restart home-assistant@homeassistant`
+
 ## Configuration
 - Go to Settings → Devices & Services → Add Integration → `LPU Belts HA`
 - Enter your `Name` exactly as it appears on the LPUBelts leaderboard
