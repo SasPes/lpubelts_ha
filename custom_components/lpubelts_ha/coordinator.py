@@ -8,6 +8,10 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import _LOGGER, SCAN_INTERVAL, LEADERBOARD_URL
 
+BLACKLISTED_USER_IDS = {
+    "CluvPi5PCAckLJhl5M4rynUmslb2",
+}
+
 class LPUBeltsDataCoordinator(DataUpdateCoordinator):
     def __init__(self, hass):
         super().__init__(hass, _LOGGER, name="LPUBelts", update_interval=SCAN_INTERVAL)
@@ -35,6 +39,18 @@ class LPUBeltsDataCoordinator(DataUpdateCoordinator):
                     if users is None or not isinstance(users, list):
                         _LOGGER.warning("Unexpected payload format: %s", list(data.keys()))
                         data = {"data": []}
+                    else:
+                        # Filter out blacklisted users and users without danPoints
+                        filtered_users = [
+                            u for u in users
+                            if u.get("danPoints") and u.get("id") not in BLACKLISTED_USER_IDS
+                        ]
+                        sorted_users = sorted(filtered_users, key=lambda u: u.get("danPoints", 0), reverse=True)
+
+                        for idx, user in enumerate(sorted_users, start=1):
+                            user["position"] = idx
+
+                        data["data"] = sorted_users
 
                     _LOGGER.debug("Fetched data for %d users", len(data.get("data", [])))
                     self.last_success_at = datetime.now(timezone.utc)

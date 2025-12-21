@@ -24,11 +24,13 @@ def humanize_since(dt: datetime | None) -> str | None:
     return f"{days} day{'s' if days != 1 else ''} ago"
 
 def parse_timestamp(value: Any) -> datetime | None:
-    if value is None:
+    if value is None or value == 0 or value == "0":
         return None
     try:
         if isinstance(value, (int, float)) or (isinstance(value, str) and value.isdigit()):
             ts = float(value)
+            if ts == 0:
+                return None
             if ts > 1e12:
                 ts /= 1000.0
             return datetime.fromtimestamp(ts, tz=timezone.utc)

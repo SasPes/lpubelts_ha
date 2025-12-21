@@ -76,13 +76,14 @@ class LPUBeltsMetricSensor(CoordinatorEntity, SensorEntity):
 
         if self._metric_key == "black_belt_awarded_at_date":
             dt = parse_timestamp(user.get("blackBeltAwardedAt"))
-            return f"{dt.strftime('%B')} {dt.day}, {dt.year}" if dt else None
+            return f"{dt.strftime('%B')} {dt.day}, {dt.year}" if dt else "Unknown"
 
         mapping = {
             "display_name": user.get("displayName"),
             "dan_level": user.get("danLevel"),
             "dan_points": user.get("danPoints"),
             "black_belt_count": user.get("blackBeltCount"),
+            "position": user.get("position"),
         }
         return mapping.get(self._metric_key)
 
@@ -101,6 +102,8 @@ class LPUBeltsMetricSensor(CoordinatorEntity, SensorEntity):
             "dan_level": user.get("danLevel"),
             "dan_points": user.get("danPoints"),
             "black_belt_count": user.get("blackBeltCount"),
-            "black_belt_awarded_at_date": f"{dt.strftime('%B')} {dt.day}, {dt.year}" if dt else None,
+            "black_belt_awarded_at_date": f"{dt.strftime('%B')} {dt.day}, {dt.year}" if dt else "Unknown",
+            "position": user.get("position"),
         }
+
         return {friendly_metric_name(k): v for k, v in attrs_raw.items()}

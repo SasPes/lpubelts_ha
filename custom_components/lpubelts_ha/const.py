@@ -15,16 +15,18 @@ METRICS = [
     "dan_points",
     "black_belt_count",
     "black_belt_awarded_at_date",
+    "position",
     "diagnostics_api_connected",
     "diagnostics_last_updated",
 ]
 
 ICON_MAP = {
     "display_name": "mdi:account",
-    "dan_level": "mdi:trophy",
+    "dan_level": "mdi:karate",
     "dan_points": "mdi:star-outline",
     "black_belt_count": "mdi:lock-open-variant",
     "black_belt_awarded_at_date": "mdi:calendar",
+    "position": "mdi:trophy",
     "diagnostics_api_connected": "mdi:calendar",
     "diagnostics_last_updated": "mdi:clock-outline",
 }
@@ -35,6 +37,7 @@ FRIENDLY_NAMES = {
     "dan_points": "Dan points",
     "black_belt_count": "Black belt count",
     "black_belt_awarded_at_date": "Black belt awarded at",
+    "position": "Position",
     "diagnostics_api_connected": "API",
     "diagnostics_last_updated": "Last Updated",
 }
