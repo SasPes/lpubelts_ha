@@ -1,6 +1,6 @@
 # LPU Belts HA
 
-A Home Assistant integration for displaying LPU Belts leaderboard data.
+Custom integration for Home Assistant to show LPU Belts leaderboard data
 
 ![Screenshot](ss/ss2.png)
 
@@ -10,16 +10,14 @@ A Home Assistant integration for displaying LPU Belts leaderboard data.
 - Provides info for dan level, points, black belt count, and more
 - Diagnostic info for API connectivity and last update time
 
-## Installation
-
-1. Copy the `lpubelts_ha` directory to your Home Assistant `custom_components` folder
-2. Restart Home Assistant
+## Installation (HACS)
+- Add this repository to HACS as a custom repository, category: `integration`
+- Install the `LPU Belts HA` integration
+- Restart Home Assistant
 
 ## Configuration
-
-1. Go to **Settings** > **Devices & Services** > **Add Integration**
-2. Search for **LPU Belts HA**
-3. Enter your LPU Belts display name
+- Go to Settings → Devices & Services → Add Integration → `LPU Belts HA`
+- Enter your `Name` exactly as it appears on the LPUBelts leaderboard
 
 ## Sensors
 
