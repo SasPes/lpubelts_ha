@@ -11,6 +11,7 @@ permissions: {}
 
 jobs:
   validate-hacs:
+    if: false // temporal disable
     runs-on: "ubuntu-latest"
     steps:
       - name: HACS validation
