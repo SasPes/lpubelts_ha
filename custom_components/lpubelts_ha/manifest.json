@@ -1,11 +1,11 @@
 {
   "domain": "lpubelts_ha",
   "name": "LPU Belts HA",
-  "version": "0.1.0",
-  "documentation": "https://github.com/SasPes/lpubelts_ha",
-  "issue_tracker": "https://github.com/SasPes/lpubelts_ha/issues",
   "codeowners": ["@SasPes"],
   "config_flow": true,
+  "documentation": "https://github.com/SasPes/lpubelts_ha",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/SasPes/lpubelts_ha/issues",
   "requirements": ["aiohttp>=3.8.0", "async-timeout>=4.0.0", "voluptuous>=0.12.0"],
-  "iot_class": "cloud_polling"
+  "version": "0.1.0"
 }
