@@ -1,5 +1,7 @@
 # LPU Belts HA
 
+![SasPes](ss/ss2.png)
+
 A Home Assistant integration for displaying LPU Belts leaderboard data.
 
 ## Features
@@ -26,5 +28,8 @@ A Home Assistant integration for displaying LPU Belts leaderboard data.
 - Dan points
 - Black belt count
 - Black belt awarded at
+
+## Diagnostic
+
 - API connectivity status
 - Last updated time
