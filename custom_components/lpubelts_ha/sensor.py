@@ -78,6 +78,10 @@ class LPUBeltsMetricSensor(CoordinatorEntity, SensorEntity):
             dt = parse_timestamp(user.get("blackBeltAwardedAt"))
             return f"{dt.strftime('%B')} {dt.day}, {dt.year}" if dt else "Unknown"
 
+        if self._metric_key == "ranking":
+            position = user.get("position")
+            return self._get_ranking_context(position) if position else None
+
         mapping = {
             "display_name": user.get("displayName"),
             "dan_level": user.get("danLevel"),
@@ -106,4 +110,50 @@ class LPUBeltsMetricSensor(CoordinatorEntity, SensorEntity):
             "position": user.get("position"),
         }
 
+        if self._metric_key == "position":
+            position = user.get("position")
+            if position:
+                attrs_raw["ranking"] = self._get_ranking_context(position)
+
         return {friendly_metric_name(k): v for k, v in attrs_raw.items()}
+
+    def _get_ranking_context(self, current_position: int) -> str:
+        """Generate ranking with position, name, and points in text format."""
+        data = self.coordinator.data or {}
+        users = data.get("data", [])
+
+        ranking = []
+
+        # Always show top 5
+        for i in range(1, min(6, len(users) + 1)):
+            user = users[i - 1]
+            display_name = user.get("displayName", "Unknown")
+            dan_points = user.get("danPoints", 0)
+            ranking.append(f"{i}. {display_name} {dan_points}")
+
+        # If current position is beyond top 5, add gap and context
+        if current_position > 6 and current_position <= len(users):
+            ranking.append("...")
+
+            # Add 2 positions before current
+            for i in range(max(6, current_position - 2), current_position):
+                if i <= len(users):
+                    user = users[i - 1]
+                    display_name = user.get("displayName", "Unknown")
+                    dan_points = user.get("danPoints", 0)
+                    ranking.append(f"{i}. {display_name} {dan_points}")
+
+            # Add current position
+            user = users[current_position - 1]
+            display_name = user.get("displayName", "Unknown")
+            dan_points = user.get("danPoints", 0)
+            ranking.append(f"{current_position}. {display_name} {dan_points}")
+
+            # Add 1 position after current
+            if current_position < len(users):
+                user = users[current_position]
+                display_name = user.get("displayName", "Unknown")
+                dan_points = user.get("danPoints", 0)
+                ranking.append(f"{current_position + 1}. {display_name} {dan_points}")
+
+        return "\n".join(ranking)

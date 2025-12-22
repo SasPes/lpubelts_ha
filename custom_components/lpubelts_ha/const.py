@@ -16,6 +16,7 @@ METRICS = [
     "black_belt_count",
     "black_belt_awarded_at_date",
     "position",
+    "ranking",
     "diagnostics_api_connected",
     "diagnostics_last_updated",
 ]
@@ -27,6 +28,7 @@ ICON_MAP = {
     "black_belt_count": "mdi:lock-open-variant",
     "black_belt_awarded_at_date": "mdi:calendar",
     "position": "mdi:trophy",
+    "ranking": "mdi:format-list-numbered",
     "diagnostics_api_connected": "mdi:calendar",
     "diagnostics_last_updated": "mdi:clock-outline",
 }
@@ -38,6 +40,7 @@ FRIENDLY_NAMES = {
     "black_belt_count": "Black belt count",
     "black_belt_awarded_at_date": "Black belt awarded at",
     "position": "Position",
+    "ranking": "Ranking",
     "diagnostics_api_connected": "API",
     "diagnostics_last_updated": "Last Updated",
 }

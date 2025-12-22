@@ -1,5 +1,9 @@
 # LPU Belts HA
 
+[![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://hacs.xyz/)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-Active-success.svg)
+
 Custom integration for Home Assistant to show LPU Belts leaderboard data
 
 ![Screenshot](ss/ss2.png)
@@ -42,11 +46,54 @@ Custom integration for Home Assistant to show LPU Belts leaderboard data
 - Dan points
 - Black belt count
 - Black belt awarded at
+- Position
+- Ranking
 
 ## Diagnostics
 
 - API connectivity status
 - Last updated time
+
+## Dashboard card example
+
+Use this in a Home Assistant Markdown card to render the leaderboard
+
+![Screenshot](ss/ss3.png)
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%- set lines = states('sensor.saspes_ranking').split('\n') | list -%}
+    {%- for line in lines if line -%}
+      {%- if line == '...' -%}
+        <tr>
+          <td colspan="3" style="text-align:center;">...</td>
+        </tr>
+      {%- else -%}
+        {%- set parts = line.split('. ') -%}
+        {%- if parts|length == 2 -%}
+          {%- set rank = parts[0] -%}
+          {%- set rest = parts[1].split(' ') -%}
+          {%- set name = rest[:-1] | join(' ') -%}
+          {%- set points = rest[-1] -%}
+          <tr>
+            <td>{{ rank }}</td>
+            <td>{{ name }}</td>
+            <td style="text-align:right;">{{ points }}</td>
+          </tr>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </tbody>
+</table>
+```
 
 ## Local Development
 
