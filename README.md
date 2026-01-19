@@ -1,4 +1,4 @@
-# LPU Belts HA
+# LPU Belts
 
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://hacs.xyz/)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -11,13 +11,13 @@ Custom integration for Home Assistant to show LPU Belts leaderboard data
 
 ## Features
 
-- Fetches and displays user metrics from the LPU Belts leaderboard
+- Fetches and displays user metrics from the [LPU Belts leaderboard](https://lpubelts.com/#/leaderboard/blackBelts)
 - Provides info for dan level, points, black belt count, and more
 - Diagnostic info for API connectivity and last update time
 
 ## Installation (HACS)
 - Add this repository to HACS as a custom repository, category: `integration`
-- Install the `LPU Belts HA` integration
+- Install the `LPU Belts` integration
 - Restart Home Assistant
 
 ## Manual Installation
@@ -37,7 +37,7 @@ Custom integration for Home Assistant to show LPU Belts leaderboard data
    - Or restart via command line: `sudo systemctl restart home-assistant@homeassistant`
 
 ## Configuration
-- Go to Settings → Devices & Services → Add Integration → `LPU Belts HA`
+- Go to Settings → Devices & Services → Add Integration → `LPU Belts`
 - Enter your `Name` exactly as it appears on the LPUBelts leaderboard
 
 ## Sensors
@@ -58,6 +58,10 @@ Custom integration for Home Assistant to show LPU Belts leaderboard data
 ## Dashboard card example
 
 Use this in a Home Assistant Markdown card to render the leaderboard
+
+Add to dashboard → Markdown card → Content 
+
+**Note:** Replace `sensor.saspes_ranking` with your actual sensor entity ID
 
 ![Screenshot](ss/ss3.png)
 

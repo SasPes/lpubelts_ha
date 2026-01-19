@@ -1,6 +1,6 @@
 {
   "domain": "lpubelts_ha",
-  "name": "LPU Belts HA",
+  "name": "LPU Belts",
   "codeowners": ["@SasPes"],
   "config_flow": true,
   "documentation": "https://github.com/SasPes/lpubelts_ha",
